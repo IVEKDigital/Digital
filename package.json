@@ -1,0 +1,52 @@
+{
+  "name": "ivek-digital-landing",
+  "version": "1.0.0",
+  "description": "Landing page oficial da IVEK Digital - Agência de Marketing Digital e IA",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "lucide-react": "^0.263.1",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^1.14.0",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-checkbox": "^1.0.4",
+    "@radix-ui/react-label": "^2.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "postcss": "^8.4.27",
+    "tailwindcss": "^3.3.3",
+    "vite": "^4.4.5"
+  },
+  "keywords": [
+    "marketing-digital",
+    "inteligencia-artificial",
+    "landing-page",
+    "react",
+    "tailwindcss",
+    "ivek-digital"
+  ],
+  "author": "IVEK Digital",
+  "license": "MIT",
+  "homepage": "https://ivekdigital.github.io/Digital",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IVEKDigital/Digital.git"
+  }
+}
+
