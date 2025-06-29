@@ -11,6 +11,9 @@ const HeroSection = () => {
     }
   };
 
+  // ***** LINK PÚBLICO DIRETO DO PDF ATUALIZADO *****
+  const pdfExternalUrl = "https://drive.google.com/uc?export=download&id=1tBKw-wK7mmZraxHhJQCzr44tJ7jfpQIU"; 
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center hero-gradient tech-grid overflow-hidden">
       {/* Elementos decorativos flutuantes */}
@@ -86,9 +89,9 @@ const HeroSection = () => {
             </Button>
           </a>
           
-          {/* BOTÃO ALTERADO PARA IR PARA O PDF */}
+          {/* BOTÃO ALTERADO PARA IR PARA O PDF EXTERNO */}
           <a
-            href="/Digital/Marketing Manager.pdf" // Caminho CORRETO para o PDF na pasta public/Digital
+            href={pdfExternalUrl} // Usando o link externo do Google Drive
             target="_blank" // Abre numa nova aba
             rel="noopener noreferrer" // Boa prática de segurança
             className="bg-transparent border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-black font-bold px-8 py-4 rounded-lg text-lg hover-lift group inline-flex items-center justify-center"
