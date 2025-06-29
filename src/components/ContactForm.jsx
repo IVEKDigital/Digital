@@ -1,9 +1,58 @@
 import React, { useState } from 'react';
 import { Send, User, Mail, Phone, Building, CheckSquare } from 'lucide-react';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
-import { Checkbox } from './ui/checkbox';
+
+// Componente Button simplificado
+const Button = ({ children, className, disabled, type, ...props }) => {
+  return (
+    <button
+      type={type || 'button'}
+      className={`relative inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 ${className}`}
+      disabled={disabled}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
+
+// Componente Input simplificado
+const Input = ({ className, type, ...props }) => {
+  return (
+    <input
+      type={type}
+      className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
+      {...props}
+    />
+  );
+};
+
+// Componente Label simplificado
+const Label = ({ children, htmlFor, className, ...props }) => {
+  return (
+    <label
+      htmlFor={htmlFor}
+      className={`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${className}`}
+      {...props}
+    >
+      {children}
+    </label>
+  );
+};
+
+// Componente Checkbox simplificado
+const Checkbox = ({ id, checked, onCheckedChange, className, ...props }) => {
+  return (
+    <input
+      type="checkbox"
+      id={id}
+      checked={checked}
+      onChange={(e) => onCheckedChange(e.target.checked)}
+      className={`h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground ${className}`}
+      {...props}
+    />
+  );
+};
+
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -55,20 +104,27 @@ const ContactForm = () => {
     setSubmitMessage('');
 
     try {
-      // URL da função serverless - substitua pela URL do seu projeto
-      const response = await fetch('/api/contact', {
+      // URL do Formspree atualizada com o ID fornecido
+      const formspreeEndpoint = 'https://formspree.io/f/manjvnbz'; 
+
+      const response = await fetch(formspreeEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json' // Importante para Formspree
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          Nome: formData.nome, // Renomeado para capitalizado para melhor leitura no email
+          Email: formData.email,
+          WhatsApp: formData.whatsapp,
+          Empresa: formData.empresa,
+          Servicos: formData.servicos.join(', ') // Junta os serviços em uma string
+        })
       });
-
-      const result = await response.json();
 
       if (response.ok) {
         setIsSubmitted(true);
-        setSubmitMessage(result.message);
+        setSubmitMessage('Sua mensagem foi enviada com sucesso! Em breve entraremos em contacto.');
         
         // Reset form após 3 segundos
         setTimeout(() => {
@@ -82,7 +138,9 @@ const ContactForm = () => {
           });
         }, 3000);
       } else {
-        setSubmitMessage(result.message || 'Erro ao enviar formulário. Tente novamente.');
+        // Se houver um erro, o Formspree geralmente retorna um JSON com detalhes
+        const result = await response.json();
+        setSubmitMessage(result.error || 'Erro ao enviar formulário. Tente novamente.');
       }
     } catch (error) {
       console.error('Erro ao enviar formulário:', error);
@@ -96,7 +154,7 @@ const ContactForm = () => {
     <section className="py-20 bg-black" id="contato">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          {/* Header */}
+          {/* Cabeçalho */}
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-red-900/20 text-red-400 px-4 py-2 rounded-full text-sm mb-6">
               ⚡ As vagas para novos clientes este mês são limitadas!
@@ -112,12 +170,12 @@ const ContactForm = () => {
             </h2>
             
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Preencha o formulário abaixo e descubra como podemos transformar seu negócio 
+              Preencha o formulário abaixo e descubra como podemos transformar o seu negócio 
               com estratégias de marketing digital e IA.
             </p>
           </div>
 
-          {/* Form */}
+          {/* Formulário */}
           <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-800">
             {isSubmitted ? (
               <div className="text-center py-12">
@@ -140,7 +198,7 @@ const ContactForm = () => {
                       id="nome"
                       name="nome"
                       type="text"
-                      placeholder="Seu nome completo"
+                      placeholder="O seu nome completo"
                       value={formData.nome}
                       onChange={handleInputChange}
                       className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-400 focus:border-orange-500"
@@ -158,7 +216,7 @@ const ContactForm = () => {
                       id="email"
                       name="email"
                       type="email"
-                      placeholder="seu@email.com"
+                      placeholder="o_seu@email.com"
                       value={formData.email}
                       onChange={handleInputChange}
                       className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-400 focus:border-orange-500"
@@ -204,7 +262,7 @@ const ContactForm = () => {
 
                 {/* Serviços */}
                 <div className="space-y-4">
-                  <Label className="text-white text-lg">Quais serviços você deseja? *</Label>
+                  <Label className="text-white text-lg">Quais serviços deseja? *</Label>
                   <div className="grid md:grid-cols-2 gap-4">
                     {servicos.map((servico) => (
                       <div key={servico} className="flex items-center space-x-3">
@@ -225,7 +283,7 @@ const ContactForm = () => {
                   </div>
                 </div>
 
-                {/* Submit Button */}
+                {/* Botão de Envio */}
                 <div className="pt-4">
                   <Button
                     type="submit"
@@ -235,18 +293,18 @@ const ContactForm = () => {
                     {isSubmitting ? (
                       <div className="flex items-center justify-center gap-2">
                         <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        Enviando...
+                        A enviar...
                       </div>
                     ) : (
                       <div className="flex items-center justify-center gap-2">
                         <Send className="w-5 h-5" />
-                        Quero impulsionar minha marca com a IVEK!
+                        Quero impulsionar a minha marca com a IVEK!
                       </div>
                     )}
                   </Button>
                 </div>
 
-                {/* Message */}
+                {/* Mensagem */}
                 {submitMessage && (
                   <div className={`text-center p-4 rounded-lg ${
                     submitMessage.includes('sucesso') || submitMessage.includes('Recebemos') 
@@ -259,10 +317,10 @@ const ContactForm = () => {
               </form>
             )}
 
-            {/* Footer */}
+            {/* Rodapé */}
             <div className="mt-8 pt-6 border-t border-gray-800">
               <p className="text-center text-gray-400 text-sm">
-                Seus dados estão seguros conosco. Não compartilhamos informações com terceiros.
+                Os seus dados estão seguros connosco. Não partilhamos informações com terceiros.
               </p>
               
               <div className="grid md:grid-cols-3 gap-6 mt-6 text-center">
@@ -271,7 +329,7 @@ const ContactForm = () => {
                     <Mail className="w-6 h-6 text-orange-500" />
                   </div>
                   <h4 className="font-semibold text-white">Resposta Rápida</h4>
-                  <p className="text-gray-400 text-sm">Retornamos seu contato em até 2 horas úteis</p>
+                  <p className="text-gray-400 text-sm">Retornamos o seu contacto em até 2 horas úteis</p>
                 </div>
                 
                 <div>
@@ -299,4 +357,3 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
-
