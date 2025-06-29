@@ -86,12 +86,15 @@ const HeroSection = () => {
 </a>
           
           <Button 
-            onClick={scrollToContact}
-            className="bg-transparent border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-black font-bold px-8 py-4 rounded-lg text-lg hover-lift group"
-          >
-            <Video className="w-5 h-5 mr-2" />
-            Criativos com IA – Conheça os Planos
-            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            href="/Digital/Gerente de Marketing.pdf" // O novo destino do PDF
+  target="_blank" // Abre numa nova aba
+  rel="noopener noreferrer" // Boa prática de segurança
+  className="bg-transparent border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-black font-bold px-8 py-4 rounded-lg text-lg hover-lift group inline-flex items-center justify-center"
+>
+  <Video className="w-5 h-5 mr-2" />
+  Criativos com IA – Conheça os Planos
+  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+</a>
           </Button>
         </div>
 
