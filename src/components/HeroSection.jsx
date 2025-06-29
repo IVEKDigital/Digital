@@ -71,14 +71,19 @@ const HeroSection = () => {
 
         {/* CTAs principais */}
         <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-8">
-          <Button 
-            onClick={scrollToContact}
-            className="bg-orange-500 hover:bg-orange-600 text-black font-bold px-8 py-4 rounded-lg text-lg hover-lift neon-glow group"
-          >
-            <TrendingUp className="w-5 h-5 mr-2" />
-            Orçamento Gratuito – Gestão de Tráfego
-            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          <a
+  href="https://wa.me/6283056300"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <Button 
+    className="bg-orange-500 hover:bg-orange-600 text-black font-bold px-8 py-4 rounded-lg text-lg hover-lift neon-glow group"
+  >
+    <TrendingUp className="w-5 h-5 mr-2" />
+    Orçamento Gratuito – Gestão de Tráfego
+    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+  </Button>
+</a>
           
           <Button 
             onClick={scrollToContact}
