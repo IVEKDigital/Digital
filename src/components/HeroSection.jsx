@@ -1,6 +1,7 @@
 import React from 'react';
 import { TrendingUp, Video, MessageSquare, ArrowRight, Sparkles, Target, Brain } from 'lucide-react';
-import { Button } from './ui/button';
+// O componente Button foi importado, mas será substituído por <a> para o link do PDF
+import { Button } from './ui/button'; 
 
 const HeroSection = () => {
   const scrollToContact = () => {
@@ -40,7 +41,7 @@ const HeroSection = () => {
 
         {/* Título principal */}
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-          <span className="text-white">Transforme seu Negócio com a</span>
+          <span className="text-white">Transforme o seu Negócio com a</span>
           <br />
           <span className="text-gradient">Força do Marketing Digital</span>
           <br />
@@ -72,38 +73,30 @@ const HeroSection = () => {
         {/* CTAs principais */}
         <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-8">
           <a
-  href="https://wa.me/6283056300"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <Button 
-    className="bg-orange-500 hover:bg-orange-600 text-black font-bold px-8 py-4 rounded-lg text-lg hover-lift neon-glow group"
-  >
-    <TrendingUp className="w-5 h-5 mr-2" />
-    Orçamento Gratuito – Gestão de Tráfego
-    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-  </Button>
-</a>
+            href="https://wa.me/6283056300"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button 
+              className="bg-orange-500 hover:bg-orange-600 text-black font-bold px-8 py-4 rounded-lg text-lg hover-lift neon-glow group"
+            >
+              <TrendingUp className="w-5 h-5 mr-2" />
+              Orçamento Gratuito – Gestão de Tráfego
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </a>
           
-          <Button 
-    import { Video, ArrowRight } from 'lucide-react'; // Certifique-se de que estes estão importados
-
-// ... (restante do seu componente React) ...
-
-<a
-  href="/Digital/Gerente de Marketing.pdf" // O novo destino do PDF
-  target="_blank" // Abre numa nova aba
-  rel="noopener noreferrer" // Boa prática de segurança
-  className="bg-transparent border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-black font-bold px-8 py-4 rounded-lg text-lg hover-lift group inline-flex items-center justify-center"
->
-  <Video className="w-5 h-5 mr-2" />
-  Criativos com IA – Conheça os Planos
-  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-</a>
-
-// ... (restante do seu componente React) ...
-
-          </Button>
+          {/* BOTÃO ALTERADO PARA IR PARA O PDF */}
+          <a
+            href="/Digital/Gerente de Marketing.pdf" // Caminho para o PDF na pasta public/Digital
+            target="_blank" // Abre numa nova aba
+            rel="noopener noreferrer" // Boa prática de segurança
+            className="bg-transparent border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-black font-bold px-8 py-4 rounded-lg text-lg hover-lift group inline-flex items-center justify-center"
+          >
+            <Video className="w-5 h-5 mr-2" />
+            Criativos com IA – Conheça os Planos
+            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+          </a>
         </div>
 
         {/* CTA secundário */}
@@ -113,7 +106,7 @@ const HeroSection = () => {
           className="border-gray-600 text-gray-300 hover:border-orange-500 hover:text-orange-500 px-6 py-3 rounded-lg hover-lift group"
         >
           <MessageSquare className="w-4 h-4 mr-2" />
-          Solicite um Contato Personalizado
+          Solicite um Contacto Personalizado
           <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
         </Button>
 
@@ -139,4 +132,3 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
-
