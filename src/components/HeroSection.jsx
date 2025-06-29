@@ -86,7 +86,12 @@ const HeroSection = () => {
 </a>
           
           <Button 
-            href="/Digital/Gerente de Marketing.pdf" // O novo destino do PDF
+    import { Video, ArrowRight } from 'lucide-react'; // Certifique-se de que estes estão importados
+
+// ... (restante do seu componente React) ...
+
+<a
+  href="/Digital/Gerente de Marketing.pdf" // O novo destino do PDF
   target="_blank" // Abre numa nova aba
   rel="noopener noreferrer" // Boa prática de segurança
   className="bg-transparent border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-black font-bold px-8 py-4 rounded-lg text-lg hover-lift group inline-flex items-center justify-center"
@@ -95,6 +100,9 @@ const HeroSection = () => {
   Criativos com IA – Conheça os Planos
   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
 </a>
+
+// ... (restante do seu componente React) ...
+
           </Button>
         </div>
 
