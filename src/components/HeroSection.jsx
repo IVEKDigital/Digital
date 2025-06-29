@@ -88,7 +88,7 @@ const HeroSection = () => {
           
           {/* BOTÃO ALTERADO PARA IR PARA O PDF */}
           <a
-            href="/Digital/Gerente de Marketing.pdf" // Caminho para o PDF na pasta public/Digital
+            href="/Digital/Marketing Manager.pdf" // Caminho CORRETO para o PDF na pasta public/Digital
             target="_blank" // Abre numa nova aba
             rel="noopener noreferrer" // Boa prática de segurança
             className="bg-transparent border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-black font-bold px-8 py-4 rounded-lg text-lg hover-lift group inline-flex items-center justify-center"
