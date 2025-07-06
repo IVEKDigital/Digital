@@ -25,7 +25,7 @@ const HeroSection = () => {
         </div>
         <div className="absolute top-40 right-20 floating-animation" style={{ animationDelay: '2s' }}>
           <div className="w-20 h-20 border border-orange-500/30 rounded-lg flex items-center justify-center">
-            <Brain className="w-10 h-10 text-orange-500" />
+            <Brain className="w-10 h-10 text-blue-500" />
           </div>
         </div>
         <div className="absolute bottom-40 left-20 floating-animation" style={{ animationDelay: '4s' }}>
